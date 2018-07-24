@@ -1,0 +1,51 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 287.4 205.09">
+    <defs>
+        <style>.cls-1{fill:#999;}.cls-2{font-size:18.43px;}.cls-2,.cls-3,.cls-7,.cls-8{font-family:open sans;}.cls-3{font-size:19.37px;}.cls-4,.cls-7{fill:#f20000;}.cls-5,.cls-6{fill:none;stroke:#f20000;stroke-miterlimit:10;stroke-width:2px;}.cls-6{stroke-dasharray:6.15 6.15;}.cls-7{font-size:11.5px;}.cls-8{font-size:20px;}</style>
+    </defs>
+    <title>rro_leader</title>
+    <rect class="cls-1" x="35.46" y="21.67" width="0.47" height="163.02"/>
+    <rect class="cls-1" x="251.13" y="21.67" width="0.47" height="163.02"/>
+    <rect class="cls-1" x="1045.65" y="1338.22" width="0.47" height="222.7" transform="translate(-1305.8 1226.59) rotate(-90)"/>
+    <text class="cls-2" transform="translate(0 24.95)">640<tspan x="0" y="39.54">480</tspan>
+        <tspan x="0" y="79.07">320</tspan>
+        <tspan x="0" y="118.61">160</tspan>
+        <tspan x="18.91" y="158.15">0</tspan>
+    </text>
+    <text class="cls-2" transform="translate(259.03 24.95)">640<tspan x="0" y="39.54">480</tspan>
+        <tspan x="0" y="79.07">320</tspan>
+        <tspan x="0" y="118.61">160</tspan>
+        <tspan x="0" y="158.15">0</tspan>
+    </text>
+    <text class="cls-3" transform="translate(49.19 200.25)">M<tspan x="15.69" y="0">a</tspan>
+        <tspan x="25.02" y="0">r</tspan>
+        <tspan x="31.16" y="0">ch</tspan>
+    </text>
+    <text class="cls-3" transform="translate(125.61 200.25)">A<tspan x="11.8" y="0">p</tspan>
+        <tspan x="22.82" y="0">r</tspan>
+        <tspan x="29.23" y="0">il</tspan>
+    </text>
+    <text class="cls-3" transform="translate(199.41 200.25)">M<tspan x="15.69" y="0">a</tspan>
+        <tspan x="24.87" y="0">y</tspan>
+    </text>
+    <rect class="cls-1" x="33.62" y="21.67" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="33.62" y="61.02" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="33.62" y="100.37" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="33.62" y="140.19" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="251.32" y="21.67" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="251.32" y="61.02" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="251.32" y="100.37" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="251.32" y="140.19" width="1.9" height="0.47"/>
+    <rect class="cls-4" x="58.49" y="100.19" width="26.85" height="80.05"/>
+    <rect class="cls-4" x="130" y="29.81" width="26.85" height="150.43"/>
+    <rect class="cls-4" x="202.2" y="54.81" width="26.85" height="125.43"/>
+    <line class="cls-5" x1="248.37" y1="22.72" x2="245.37" y2="22.72"/>
+    <line class="cls-6" x1="239.21" y1="22.72" x2="45.39" y2="22.72"/>
+    <line class="cls-5" x1="42.31" y1="22.72" x2="39.31" y2="22.72"/>
+    <text class="cls-7" transform="translate(255.12 9.62)">T<tspan x="4.98" y="0">a</tspan>
+        <tspan x="10.52" y="0">r</tspan>
+        <tspan x="14.19" y="0">get</tspan>
+    </text>
+    <text class="cls-8" transform="translate(55.95 95.47)">320</text>
+    <text class="cls-8" transform="translate(126.95 24.95)">632</text>
+    <text class="cls-8" transform="translate(200.62 50.81)">504</text>
+</svg>

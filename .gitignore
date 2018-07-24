@@ -1,0 +1,7 @@
+App/config/database.php
+uploads/*
+App/logs/*
+.idea/
+App/config/config.php
+
+session/

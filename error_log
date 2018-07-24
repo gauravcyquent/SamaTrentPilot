@@ -1,0 +1,6 @@
+[23-May-2016 00:25:32 America/Chicago] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home2/android/danamon.com/App/modules/Activity/controllers/Activity.php on line 47
+[23-May-2016 00:25:32 America/Chicago] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home2/android/danamon.com/App/modules/Activity/controllers/Activity.php on line 47
+[23-May-2016 00:25:53 America/Chicago] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home2/android/danamon.com/App/modules/Activity/controllers/Activity.php on line 47
+[23-May-2016 00:26:36 America/Chicago] PHP Parse error:  syntax error, unexpected '<<' (T_SL) in /home2/android/danamon.com/App/modules/Activity/controllers/Activity.php on line 47
+[31-May-2016 02:42:13 America/Chicago] PHP Warning:  Unknown: Input variables exceeded 1000. To increase the limit change max_input_vars in php.ini. in Unknown on line 0
+[31-May-2016 02:42:15 America/Chicago] PHP Warning:  Unknown: Input variables exceeded 1000. To increase the limit change max_input_vars in php.ini. in Unknown on line 0

@@ -1,0 +1,35 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 601.98 322.84">
+    <defs>
+        <style>.cls-1{font-size:18.43px;font-family:open sans;}.cls-2{white-space:pre;}.cls-3,.cls-4{fill:none;}.cls-3{stroke:#000;}.cls-3,.cls-4,.cls-5{stroke-miterlimit:10;}.cls-4{stroke:#1ab395;stroke-width:4px;}.cls-5{fill:#1ab395;stroke:#fff;}</style>
+    </defs>
+    <title>Historical_CASA_Balance</title>
+    <text class="cls-1" transform="translate(13.27 15.43)">30<tspan x="-13.27" y="69.54">22.5</tspan>
+        <tspan x="0" y="139.07">15</tspan>
+        <tspan x="-3.82" y="208.61">7.5</tspan>
+        <tspan x="9.46" y="278.15">0</tspan>
+    </text>
+    <text class="cls-1" transform="translate(44.27 318.24)">
+        <tspan class="cls-2">Jan                   </tspan>
+        <tspan x="100.17" y="0">F</tspan>
+        <tspan class="cls-2" x="108.58" y="0">eb                   </tspan>
+        <tspan x="202.54" y="0">M</tspan>
+        <tspan class="cls-2" x="217.47" y="0">ar                   </tspan>
+        <tspan x="306.63" y="0">A</tspan>
+        <tspan class="cls-2" x="317.85" y="0">pr                   </tspan>
+        <tspan x="408.61" y="0">M</tspan>
+        <tspan x="423.54" y="0">a</tspan>
+        <tspan class="cls-2" x="432.27" y="0">y                   Jun</tspan>
+    </text>
+    <line class="cls-3" x1="44.27" y1="293.43" x2="594.41" y2="293.43"/>
+    <line class="cls-3" x1="44.27" y1="223.43" x2="594.41" y2="223.43"/>
+    <line class="cls-3" x1="44.27" y1="154.43" x2="594.41" y2="154.43"/>
+    <line class="cls-3" x1="44.27" y1="84.43" x2="594.41" y2="84.43"/>
+    <line class="cls-3" x1="44.27" y1="15.43" x2="594.41" y2="15.43"/>
+    <path class="cls-4" d="M149.14,2253s59.79-48,80.26-47,61.1,43,77.43,23.49S366.27,2092,386.2,2092s62,127,80.86,133,94.26-6,153-20,79.21,48,79.21,48" transform="translate(-104.87 -2006.57)"/>
+    <circle class="cls-5" cx="46.61" cy="243.93" r="7.07"/>
+    <circle class="cls-5" cx="158.27" cy="216.43" r="7.07"/>
+    <circle class="cls-5" cx="277.91" cy="85.43" r="7.07"/>
+    <circle class="cls-5" cx="362.79" cy="218.43" r="7.07"/>
+    <circle class="cls-5" cx="466.98" cy="208.35" r="7.07"/>
+    <circle class="cls-5" cx="594.41" cy="246.43" r="7.07"/>
+</svg>

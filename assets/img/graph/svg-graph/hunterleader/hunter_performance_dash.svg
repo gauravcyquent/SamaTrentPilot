@@ -1,0 +1,55 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 335.02 349.93">
+    <defs>
+        <style>.cls-1{fill:#999;}.cls-2{font-size:16.5px;}.cls-2,.cls-3,.cls-4,.cls-5{font-family:open sans;}.cls-3{font-size:19.27px;}.cls-4{font-size:17.88px;}.cls-5{font-size:15.11px;}.cls-5,.cls-9{fill:#f20000;}.cls-6,.cls-7{fill:none;stroke:#f20000;stroke-miterlimit:10;stroke-width:2px;}.cls-7{stroke-dasharray:6 6;}.cls-8{fill:#00ce00;}.cls-10{fill:#f9f20d;}</style>
+    </defs>
+    <title>hunter_performance_dash</title>
+    <rect class="cls-1" x="28.92" y="24.46" width="0.69" height="301.28"/>
+    <rect class="cls-1" x="289.24" y="24.46" width="0.69" height="301.28"/>
+    <rect class="cls-1" x="240.91" y="213.25" width="0.69" height="270.73" transform="translate(-188.84 561.09) rotate(-90)"/>
+    <text class="cls-2" transform="translate(0 29.75)">40<tspan x="0" y="58.59">32</tspan>
+        <tspan x="0" y="117.18">24</tspan>
+        <tspan x="0" y="175.77">16</tspan>
+        <tspan x="8.46" y="234.36">8</tspan>
+        <tspan x="8.46" y="292.95">0</tspan>
+    </text>
+    <text class="cls-3" transform="translate(64.77 16.13)">40</text>
+    <text class="cls-3" transform="translate(149.3 194.54)">16</text>
+    <text class="cls-3" transform="translate(230.68 132.75)">24</text>
+    <text class="cls-4" transform="translate(51.52 345.46)">M<tspan x="14.49" y="0">a</tspan>
+        <tspan x="23.11" y="0">r</tspan>
+        <tspan x="28.77" y="0">ch</tspan>
+    </text>
+    <text class="cls-4" transform="translate(142.57 345.46)">A<tspan x="10.89" y="0">p</tspan>
+        <tspan x="21.07" y="0">r</tspan>
+        <tspan x="26.99" y="0">il</tspan>
+    </text>
+    <text class="cls-5" transform="translate(295.37 128.23)">T<tspan x="6.54" y="0">a</tspan>
+        <tspan x="13.82" y="0">r</tspan>
+        <tspan x="18.64" y="0">get</tspan>
+    </text>
+    <text class="cls-4" transform="translate(227.73 345.46)">M<tspan x="14.49" y="0">a</tspan>
+        <tspan x="22.96" y="0">y</tspan>
+    </text>
+    <rect class="cls-1" x="26.2" y="24.46" width="2.81" height="0.69"/>
+    <rect class="cls-1" x="26.2" y="84.16" width="2.81" height="0.69"/>
+    <rect class="cls-1" x="26.2" y="142.47" width="2.81" height="0.69"/>
+    <rect class="cls-1" x="26.2" y="200.79" width="2.81" height="0.69"/>
+    <rect class="cls-1" x="26.2" y="259.79" width="2.81" height="0.69"/>
+    <text class="cls-2" transform="translate(298.91 29.75)">40<tspan x="0" y="58.59">32</tspan>
+        <tspan x="0" y="117.18">24</tspan>
+        <tspan x="0" y="175.77">16</tspan>
+        <tspan x="0" y="234.36">8</tspan>
+        <tspan x="0" y="292.95">0</tspan>
+    </text>
+    <rect class="cls-1" x="289.52" y="24.46" width="2.81" height="0.69"/>
+    <rect class="cls-1" x="289.52" y="84.16" width="2.81" height="0.69"/>
+    <rect class="cls-1" x="289.52" y="142.47" width="2.81" height="0.69"/>
+    <rect class="cls-1" x="289.52" y="200.79" width="2.81" height="0.69"/>
+    <rect class="cls-1" x="289.52" y="259.79" width="2.81" height="0.69"/>
+    <line class="cls-6" x1="285.77" y1="143.17" x2="282.77" y2="143.17"/>
+    <line class="cls-7" x1="276.77" y1="143.17" x2="39.59" y2="143.17"/>
+    <line class="cls-6" x1="36.58" y1="143.17" x2="33.58" y2="143.17"/>
+    <rect class="cls-8" x="51.83" y="24.46" width="47.2" height="295.03"/>
+    <rect class="cls-9" x="135.66" y="200.79" width="47.2" height="118.71"/>
+    <rect class="cls-10" x="219.5" y="142.47" width="47.2" height="177.02"/>
+</svg>

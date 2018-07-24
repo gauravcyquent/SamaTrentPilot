@@ -1,0 +1,51 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 284.98 195.57">
+    <defs>
+        <style>.cls-1{fill:#999;}.cls-2{font-size:18.43px;}.cls-10,.cls-2,.cls-3,.cls-9{font-family:open sans;}.cls-3{font-size:19.37px;}.cls-4,.cls-9{fill:#f20000;}.cls-5{fill:#00ce00;}.cls-6{fill:#f9f20d;}.cls-7,.cls-8{fill:none;stroke:#f20000;stroke-miterlimit:10;stroke-width:2px;}.cls-8{stroke-dasharray:6.15 6.15;}.cls-9{font-size:11.5px;}.cls-10{font-size:20px;}</style>
+    </defs>
+    <title>Loan_Balance_Growth</title>
+    <rect class="cls-1" x="37.15" y="12.15" width="0.47" height="163.02"/>
+    <rect class="cls-1" x="252.82" y="12.15" width="0.47" height="163.02"/>
+    <rect class="cls-1" x="324.19" y="1040.22" width="0.47" height="222.7" transform="translate(-1006.11 495.61) rotate(-90)"/>
+    <text class="cls-2" transform="translate(0 15.43)">4%<tspan x="0" y="39.54">3%</tspan>
+        <tspan x="0" y="79.07">2%</tspan>
+        <tspan x="0" y="118.61">1%</tspan>
+        <tspan x="14.6" y="158.15">0</tspan>
+    </text>
+    <text class="cls-2" transform="translate(260.72 15.43)">4%<tspan x="0" y="39.54">3%</tspan>
+        <tspan x="0" y="79.07">2%</tspan>
+        <tspan x="0" y="118.61">1%</tspan>
+        <tspan x="0" y="158.15">0</tspan>
+    </text>
+    <text class="cls-3" transform="translate(46.88 190.73)">M<tspan x="15.69" y="0">a</tspan>
+        <tspan x="25.02" y="0">r</tspan>
+        <tspan x="31.16" y="0">ch</tspan>
+    </text>
+    <text class="cls-3" transform="translate(130.3 190.73)">A<tspan x="11.8" y="0">p</tspan>
+        <tspan x="22.82" y="0">r</tspan>
+        <tspan x="29.23" y="0">il</tspan>
+    </text>
+    <text class="cls-3" transform="translate(204.09 190.73)">M<tspan x="15.69" y="0">a</tspan>
+        <tspan x="24.87" y="0">y</tspan>
+    </text>
+    <rect class="cls-1" x="35.31" y="12.15" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="35.31" y="51.5" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="35.31" y="90.85" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="35.31" y="130.67" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="253.01" y="12.15" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="253.01" y="51.5" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="253.01" y="90.85" width="1.9" height="0.47"/>
+    <rect class="cls-1" x="253.01" y="130.67" width="1.9" height="0.47"/>
+    <rect class="cls-4" x="60.18" y="130.67" width="26.85" height="40.05"/>
+    <rect class="cls-5" x="131.68" y="51.97" width="26.85" height="118.75"/>
+    <rect class="cls-6" x="203.88" y="90.61" width="26.85" height="80.1"/>
+    <line class="cls-7" x1="250.05" y1="90.85" x2="247.05" y2="90.85"/>
+    <line class="cls-8" x1="240.9" y1="90.85" x2="47.08" y2="90.85"/>
+    <line class="cls-7" x1="44" y1="90.85" x2="41" y2="90.85"/>
+    <text class="cls-9" transform="translate(254.8 77.75)">T<tspan x="4.98" y="0">a</tspan>
+        <tspan x="10.52" y="0">r</tspan>
+        <tspan x="14.19" y="0">get</tspan>
+    </text>
+    <text class="cls-10" transform="translate(58.98 126.95)">1%</text>
+    <text class="cls-10" transform="translate(130.98 46.95)">3%</text>
+    <text class="cls-10" transform="translate(202.64 83.62)">2%</text>
+</svg>
