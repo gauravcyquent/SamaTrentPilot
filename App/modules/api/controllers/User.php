@@ -28,28 +28,74 @@ class User extends REST_Controller {
 		$user_id = $this->post('username', true);
 		$password = $this->post('password', true);
 
-		$userdata = $this->user_model->CheckUser($user_id, md5($password));
-		if ($userdata) {
-			 
-			$message = [
-                    'response_code' => '1',
-                    'message' => 'Login Successfull',
-                    'data' => $userdata
-			];
 
-			$this->set_response($message, REST_Controller::HTTP_OK);
-		}
-		else {
-			$message = [
-                'response_code' => '0',
+		if($user_id && $password)
+		{
+			$userdata = $this->user_model->CheckUser($user_id, md5($password));
+			if ($userdata) {
+
+				$message = [
+                    'Error_code' => '1',
+			        'Status'=>true,
+                    'message' => 'Authorized user..',
+                    'data' => $userdata
+				];
+
+				$this->set_response($message, REST_Controller::HTTP_OK);
+			}
+			else {
+				$message = [
+                'Error_code' => '0',
+			     'Status'=>false,
                 'message' => 'Invalid Credentials please try again'
                 ];
 
                 $this->set_response($message, REST_Controller::HTTP_OK);
+			}
 		}
+
+
+		else {
+
+			if(!$user_id)
+			{
+				$message = [
+                'Error_code' => '-104',
+			    'Status'=>false,
+                'message' => 'User Id is blank'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
+
+			if(!$password)
+			{
+				$message = [
+                'Error_code' => '-105',
+			    'Status'=>false,
+                'message' => 'Password is blank'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
+
+
+			if(!$user_id && !$password) {
+					
+				$message = [
+                'Error_code' => '-101',
+			    'Status'=>false,
+                'message' => 'Please enter Username and password'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
+
+		}
+
 	}
 
-	 
+
 
 	// logout
 
@@ -74,7 +120,7 @@ class User extends REST_Controller {
                 'message' => 'Sorry! Invalid Userid. and reg id'
                 ];
                 $this->set_response($message, REST_Controller::HTTP_OK);
-        }
-    }
- 
+		}
+	}
+
 }
