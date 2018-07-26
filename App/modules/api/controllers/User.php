@@ -25,8 +25,8 @@ class User extends REST_Controller {
 	function CheckUserAuthentication_post() {
 			
 		//echo 1333; die();
-		$user_id = $this->post('username', true);
-		$password = $this->post('password', true);
+		$user_id = $this->input->post('username', true);
+		$password = $this->input->post('password', true);
 
 
 		if($user_id && $password)
@@ -122,5 +122,18 @@ class User extends REST_Controller {
                 $this->set_response($message, REST_Controller::HTTP_OK);
 		}
 	}
+	
+	
+	public function BarcodeValidation_post()
+	{
+		$barcodes = $this->input->post('barcodes');
+		
+		$barcodes = json_decode($barcodes);
+		
+		print_r($barcodes); die();
+	}
+	
+	
+	
 
 }
