@@ -9,6 +9,8 @@
 class User_model extends CI_Model {
 
 	var $user_table = "users";
+	var $product_master = "trent_product_master";
+	var $gap_scan_listing = "gap_scan_listing";
 
 	function __construct() {
 		parent::__construct();
@@ -30,13 +32,76 @@ class User_model extends CI_Model {
 		$query = $this->db->get($this->user_table);  //echo $this->db->last_query(); die();
 		if ($query->num_rows() === 1) {
 			return $query->row();
-        } else {
-            return false;
-        }
+		} else {
+			return false;
+		}
+	}
+
+	function BarcodeValidation($barcodes,$storeID)
+	{
+			
+		$array = array();
+			
+		foreach($barcodes as $codes)
+		{
+			$this->db->where('Barcode',$codes);
+			$this->db->where('Store_Id',$storeID);
+			$query = $this->db->get($this->product_master);
+
+			if($query->num_rows() == 0)
+			{
+				array_push($array,$codes);
+			}
+		}
+			
+		return $array;
+	}
+
+
+	function InsertGapScanListing($barcodes,$storeID)
+	{
+		$this->db->where_in('Barcode',$barcodes);
+		$this->db->where('Store_Id',$storeID);
+		$query = $this->db->get($this->product_master);
+		//echo $this->db->last_query();
+
+		if($query->num_rows() > 0)
+		{
+
+			$arr = array();
+			foreach($query->result_array() as $row)
+			{
+				unset($row['id']);
+				unset($row['qual1']);
+				unset($row['qual2']);
+				unset($row['qual3']);
+				unset($row['qual4']);
+				unset($row['sub_cat_id']);
+				unset($row['sub_cat_name']);
+
+				array_push($arr,$row);
+					
+					
+			}
+
+
+			$this->db->where_in('Barcode',$barcodes);
+			$this->db->where('Store_Id',$storeID);
+			$query = $this->db->get($this->gap_scan_listing);
+			if($query->num_rows() == 0){
+				$insert = $this->db->insert_batch($this->gap_scan_listing, $arr);
+
+					
+			}
+				
+			return $arr;
+			
+    	}
+    	
+    	//print_r($query->result()); die();
+    	
+    	
     }
-
-    
-
    
 
 }

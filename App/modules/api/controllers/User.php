@@ -122,18 +122,75 @@ class User extends REST_Controller {
                 $this->set_response($message, REST_Controller::HTTP_OK);
 		}
 	}
-	
-	
+
+
 	public function BarcodeValidation_post()
 	{
 		$barcodes = $this->input->post('barcodes');
-		
-		$barcodes = json_decode($barcodes);
-		
-		print_r($barcodes); die();
+		$storeID = $this->input->post('store_id');
+
+		if($storeID)
+		{
+			$json = json_decode($barcodes,true);
+			$data = $this->user_model->BarcodeValidation($json,$storeID);
+				
+			if($data)
+			{
+				$message = [
+                'response_code' => '0',
+                'message' => 'Barcodes not found',
+				'data'=> $data
+				];
+			}
+				
+				
+			else
+			{
+				$data = $this->user_model->InsertGapScanListing($json,$storeID);
+
+				if(is_array($data))
+				{
+					$message = [
+				'status'=>true,
+                'response_code' => '1',
+                'message' => 'GapScanlisting Succesfully saved',
+				'data'=> $data
+					];
+				}
+				
+			
+			}
+				
+		}
+
+		else
+
+		{
+			$message = [
+                'response_code' => '-107',
+                'message' => 'Store Id not found'
+                ];
+		}
+
+
+		$this->set_response($message, REST_Controller::HTTP_OK);
+
+
+		/*$barcodes = json_decode($barcodes,true);
+
+		if(is_array($barcodes))
+		{
+		$data = $this->user_model->BarcodeValidation($barcodes);
+		}*/
+
+		/*$barcode = array_column($barcodes, 'barcode');
+
+		$StoreID  = array_column($barcodes, 'storeid');*/
+
+		//print_r($StoreID);
 	}
-	
-	
-	
+
+
+
 
 }
