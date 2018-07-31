@@ -306,6 +306,7 @@ switch (ENVIRONMENT)
  * And away we go...
  */
  //echo "asdasdasda";die;
+ //equire_once APPPATH.'third_party/datamapper/bootstrap.php';
 require_once BASEPATH.'core/CodeIgniter.php';
 
 function pr($arr, $die = false){

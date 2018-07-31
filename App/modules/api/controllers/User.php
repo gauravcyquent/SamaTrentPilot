@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  *
  * Author: Gaurav Ranjan<gaurav.r@cyquent.com>
@@ -17,8 +15,30 @@ class User extends REST_Controller {
 	function __construct() {
 		// Construct the parent class
 		parent::__construct();
+		$this->load->dbutil();
 		$this->load->model('user_model');
-		$this->load->helper('string');
+
+
+		//print_r($this->db->error());
+
+		if($this->db->error())
+		{
+
+			$message = [
+                    'Error_code' => '0',
+			        'Status'=>false,
+                    'message' => 'User Detail identification failed'
+                    // 'data' => $userdata
+			];
+
+			$this->set_response($message, REST_Controller::HTTP_OK);
+
+			//die();
+		}
+
+
+
+
 
 	}
 
@@ -44,39 +64,80 @@ class User extends REST_Controller {
 				$this->set_response($message, REST_Controller::HTTP_OK);
 			}
 			else {
-				$message = [
-                'Error_code' => '0',
-			     'Status'=>false,
-                'message' => 'Invalid Credentials please try again'
-                ];
 
-                $this->set_response($message, REST_Controller::HTTP_OK);
+
+				$return_value = $this->user_model->check_username($user_id);
+
+
+				//print_r($return_value); die();
+
+				if($return_value)
+				{
+					$message = [
+                'Error_code' => '0',
+			    'Status'=>false,
+                'message' => $return_value
+					];
+
+					$this->set_response($message, REST_Controller::HTTP_OK);
+				}
+					
 			}
 		}
 
 
 		else {
 
-			if(!$user_id)
+			if(!array_key_exists("username",$this->post()))
 			{
 				$message = [
-                'Error_code' => '-104',
+                'Error_code' => '-101',
 			    'Status'=>false,
-                'message' => 'User Id is blank'
+                'message' => 'JSON Parameter is invalid'
                 ];
 
                 $this->set_response($message, REST_Controller::HTTP_OK);
 			}
+			else{
+				if($user_id == NULL || $user_id == ' ')
+				{
+					$message = [
+                'Error_code' => '-104',
+			    'Status'=>false,
+                'message' => 'UserID is blank'
+                ];
 
-			if(!$password)
+                $this->set_response($message, REST_Controller::HTTP_OK);
+				}
+
+
+					
+			}
+
+			if(!array_key_exists("password",$this->post()))
 			{
 				$message = [
+                'Error_code' => '-101',
+			    'Status'=>false,
+                'message' => 'JSON Parameter is invalid'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
+			else{
+				if($password == NULL || $password == ' ')
+				{
+					$message = [
                 'Error_code' => '-105',
 			    'Status'=>false,
                 'message' => 'Password is blank'
                 ];
 
                 $this->set_response($message, REST_Controller::HTTP_OK);
+				}
+					
+					
+
 			}
 
 
@@ -85,7 +146,7 @@ class User extends REST_Controller {
 				$message = [
                 'Error_code' => '-101',
 			    'Status'=>false,
-                'message' => 'Please enter Username and password'
+                'message' => 'JSON Parameter is invalid'
                 ];
 
                 $this->set_response($message, REST_Controller::HTTP_OK);
@@ -131,19 +192,20 @@ class User extends REST_Controller {
 
 		if($storeID)
 		{
-			$json = json_decode($barcodes,true);
+			$json = json_decode($barcodes,true);  //print_r($json); die();
 			$data = $this->user_model->BarcodeValidation($json,$storeID);
-				
+
 			if($data)
 			{
 				$message = [
-                'response_code' => '0',
+				'status'=>false,
+                'Error_Code' => '-106',
                 'message' => 'Barcodes not found',
 				'data'=> $data
 				];
 			}
-				
-				
+
+
 			else
 			{
 				$data = $this->user_model->InsertGapScanListing($json,$storeID);
@@ -152,22 +214,23 @@ class User extends REST_Controller {
 				{
 					$message = [
 				'status'=>true,
-                'response_code' => '1',
+                'Error_Code' => '1',
                 'message' => 'GapScanlisting Succesfully saved',
 				'data'=> $data
 					];
 				}
-				
-			
+
+					
 			}
-				
+
 		}
 
 		else
 
 		{
 			$message = [
-                'response_code' => '-107',
+			    'status'=>false,
+                'Error_Code' => '-107',
                 'message' => 'Store Id not found'
                 ];
 		}
