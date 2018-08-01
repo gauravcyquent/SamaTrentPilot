@@ -78,7 +78,7 @@ class User extends REST_Controller {
 				if($return_value)
 				{
 					$message = [
-                'Error_code' => '0',
+                'Error_code' => $return_value['code'],
 			    'Status'=>false,
 				'Error_Reason' => $return_value['err'] ,
 				'Error_Type' => 'Critical', 
