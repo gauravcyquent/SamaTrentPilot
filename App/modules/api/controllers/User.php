@@ -25,7 +25,7 @@ class User extends REST_Controller {
 		{
 
 			$message = [
-                    'Error_code' => '0',
+                    'Error_code' => '-101',
 			        'Status'=>false,
 			        'Error_Reason' => 'UNKNOWNERROR',
 				    'Error_Type' => 'Critical', 
