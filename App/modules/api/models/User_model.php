@@ -149,7 +149,7 @@ class User_model extends CI_Model {
 
 				$message['msg'] ='User Id not found';
 				$message['err'] = 'INVALIDUSER';
-				$message['code'] = '-102'
+				$message['code'] = '-102';
 					
 
 				return $message;
@@ -162,7 +162,7 @@ class User_model extends CI_Model {
 
 				$message['msg'] ='Password is not matched';
 				$message['err'] = 'INVALIDUSER';
-				$message['code'] = '-103'
+				$message['code'] = '-103';
 
 
 				return $message;
