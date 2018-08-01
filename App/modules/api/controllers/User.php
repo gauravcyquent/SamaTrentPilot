@@ -250,7 +250,7 @@ class User extends REST_Controller {
 			        'Status'=>false,
 			        'Error_Reason' => 'UNKNOWNERROR',
 				    'Error_Type' => 'Critical', 
-                    'message' => 'User Detail identification failed'
+                    'message' => 'Barcode validation failed'
                     // 'data' => $userdata
 						];
 					}
