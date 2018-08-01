@@ -62,7 +62,7 @@ class User_model extends CI_Model {
 	}
 
 
-	function InsertGapScanListing($barcodes,$storeID)
+	function InsertGapScanListing($barcodes,$storeID,$userID)
 	{
 		$this->db->where_in('Barcode',$barcodes);
 		$this->db->where('Store_Id',$storeID);
@@ -101,7 +101,7 @@ class User_model extends CI_Model {
 				 'Sys_qty'=>$row['Sys_qty'],
 				 'Packge_size'=>$row['Packge_size'],
 				 'Units'=>$row['Units'],
-				 //'Avaliable_flag'=>$row['Avaliable_flag'],
+				 'Associate_Created_UserId'=>$userID,
 				 'Category_id'=>$row['Category_id'],
 				 'Category_Name'=>$row['Category_name'],
 				 'Sub_Category_Id'=>$row['sub_cat_id'],
@@ -109,7 +109,7 @@ class User_model extends CI_Model {
 
 
 				 );
-
+				 $this->db->set('GS_CreatedDateTime', 'NOW()', FALSE);
 				 $insert = $this->db->insert($this->gap_scan_listing, $arr2);
 
 
@@ -147,7 +147,8 @@ class User_model extends CI_Model {
 			if($query->num_rows() == 0)
 			{
 
-				$message ='User Id not found';
+				$message['msg'] ='User Id not found';
+				$message['err'] = 'INVALIDUSER';
 					
 
 				return $message;
@@ -158,7 +159,8 @@ class User_model extends CI_Model {
 
 			else {
 
-				$message ='Password is not matched';
+				$message['msg'] ='Password is not matched';
+				$message['err'] = 'INVALIDUSER';
 
 
 				return $message;

@@ -27,6 +27,8 @@ class User extends REST_Controller {
 			$message = [
                     'Error_code' => '0',
 			        'Status'=>false,
+			        'Error_Reason' => 'UNKNOWNERROR',
+				    'Error_Type' => 'Critical', 
                     'message' => 'User Detail identification failed'
                     // 'data' => $userdata
 			];
@@ -57,6 +59,8 @@ class User extends REST_Controller {
 				$message = [
                     'Error_code' => '1',
 			        'Status'=>true,
+				    'Error_Reason' => '',
+				    'Error_Type' => '',
                     'message' => 'Authorized user..',
                     'data' => $userdata
 				];
@@ -76,7 +80,9 @@ class User extends REST_Controller {
 					$message = [
                 'Error_code' => '0',
 			    'Status'=>false,
-                'message' => $return_value
+				'Error_Reason' => $return_value['err'] ,
+				'Error_Type' => 'Critical', 
+                'message' => $return_value['msg']
 					];
 
 					$this->set_response($message, REST_Controller::HTTP_OK);
@@ -93,6 +99,8 @@ class User extends REST_Controller {
 				$message = [
                 'Error_code' => '-101',
 			    'Status'=>false,
+				'Error_Reason' => 'INVALIDJSON',
+				'Error_Type' => 'Critical', 
                 'message' => 'JSON Parameter is invalid'
                 ];
 
@@ -104,6 +112,8 @@ class User extends REST_Controller {
 					$message = [
                 'Error_code' => '-104',
 			    'Status'=>false,
+				'Error_Reason' => 'USERIDERROR',
+				'Error_Type' => 'Critical', 
                 'message' => 'UserID is blank'
                 ];
 
@@ -119,6 +129,8 @@ class User extends REST_Controller {
 				$message = [
                 'Error_code' => '-101',
 			    'Status'=>false,
+				'Error_Reason' => 'INVALIDJSON',
+				'Error_Type' => 'Critical', 
                 'message' => 'JSON Parameter is invalid'
                 ];
 
@@ -130,6 +142,8 @@ class User extends REST_Controller {
 					$message = [
                 'Error_code' => '-105',
 			    'Status'=>false,
+				'Error_Reason' => 'PASSWORDERROR', 
+				'Error_Type' => 'Critical',
                 'message' => 'Password is blank'
                 ];
 
@@ -146,6 +160,8 @@ class User extends REST_Controller {
 				$message = [
                 'Error_code' => '-101',
 			    'Status'=>false,
+				'Error_Reason' => 'INVALIDJSON', 
+				'Error_Type' => 'Critical',
                 'message' => 'JSON Parameter is invalid'
                 ];
 
@@ -188,39 +204,59 @@ class User extends REST_Controller {
 	public function BarcodeValidation_post()
 	{
 		$barcodes = $this->input->post('barcodes');
-		$storeID = $this->input->post('store_id');
+		$storeID  = $this->input->post('store_id');
+		$userID   = $this->input->post('user_id');
 
-		if($storeID)
+		if($storeID && $userID)
 		{
-			$json = json_decode($barcodes,true);  //print_r($json); die();
-			$data = $this->user_model->BarcodeValidation($json,$storeID);
 
-			if($data)
-			{
-				$message = [
-				'status'=>false,
-                'Error_Code' => '-106',
-                'message' => 'Barcodes not found',
-				'data'=> $data
-				];
-			}
+			if(array_key_exists("barcodes",$this->post())){
 
+				$json = json_decode($barcodes,true);  //print_r($json); die();
+				$data = $this->user_model->BarcodeValidation($json,$storeID);
 
-			else
-			{
-				$data = $this->user_model->InsertGapScanListing($json,$storeID);
-
-				if(is_array($data))
+				if($data)
 				{
 					$message = [
-				'status'=>true,
-                'Error_Code' => '1',
-                'message' => 'GapScanlisting Succesfully saved',
+				'status'=>false,
+                'Error_Code' => '-106',
+				'Error_Reason'=>'INVALIDBARCODE', 
+                'message' => 'Barcode not found',
 				'data'=> $data
 					];
 				}
 
-					
+
+				else
+				{
+					$data = $this->user_model->InsertGapScanListing($json,$storeID,$userID);
+
+					if(is_array($data))
+					{
+						$message = [
+				'status'=>true,
+                'Error_Code' => '1',
+                'message' => 'GapScanlisting Succesfully saved',
+				'data'=> $data
+						];
+					}
+
+
+				}
+			}
+				
+				
+			else
+			{
+				$message = [
+                'Error_code' => '-101',
+			    'Status'=>false,
+				'Error_Reason' => 'INVALIDJSON',
+				'Error_Type' => 'Critical', 
+                'message' => 'JSON Parameter is invalid'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
 			}
 
 		}
@@ -228,11 +264,64 @@ class User extends REST_Controller {
 		else
 
 		{
-			$message = [
+
+			if(!array_key_exists("store_id",$this->post()))
+			{
+				$message = [
+                'Error_code' => '-101',
+			    'Status'=>false,
+				'Error_Reason' => 'INVALIDJSON',
+				'Error_Type' => 'Critical', 
+                'message' => 'JSON Parameter is invalid'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
+
+			else{
+
+				if($storeID == ' ' || $storeID == NULL){
+
+					$message = [
 			    'status'=>false,
                 'Error_Code' => '-107',
+			    'Error_Reason' => 'INVALIDSTORE',
+				'Error_Type' => 'Critical',  
                 'message' => 'Store Id not found'
                 ];
+
+				}
+
+			}
+			
+		if(!array_key_exists("user_id",$this->post()))
+			{
+				$message = [
+                'Error_code' => '-101',
+			    'Status'=>false,
+				'Error_Reason' => 'INVALIDJSON',
+				'Error_Type' => 'Critical', 
+                'message' => 'JSON Parameter is invalid'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
+
+			else{
+
+				if($userID == ' ' || $userID == NULL){
+
+					$message = [
+			    'status'=>false,
+                'Error_Code' => '-107',
+			    'Error_Reason' => 'INVALIDUSER',
+				'Error_Type' => 'Critical',  
+                'message' => 'User Id not found'
+                ];
+
+				}
+
+			}
 		}
 
 
