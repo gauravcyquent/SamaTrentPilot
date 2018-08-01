@@ -21,6 +21,8 @@ class User_model extends CI_Model {
 	 */
 
 	function CheckUser($user_id, $password) {
+		
+		
 		$cond = array(
             'login_id' => $user_id,
             'password' => $password,
@@ -42,6 +44,7 @@ class User_model extends CI_Model {
 
 	function BarcodeValidation($barcodes,$storeID)
 	{
+		
 			
 		$array = array();
 			
@@ -90,6 +93,7 @@ class User_model extends CI_Model {
 				$query2 = $this->db->get($this->gap_scan_listing);
 				//echo $this->db->last_query(); die();
 				//echo $query->num_rows(); die();
+				if($query2){
 				if($query2->num_rows() == 0){
 
 				 $arr2 = array(
@@ -117,7 +121,12 @@ class User_model extends CI_Model {
 
 
 				}
-					
+				}
+
+				else {
+					$message = '000';
+					return 105;
+				}
 					
 			}
 

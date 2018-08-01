@@ -15,14 +15,17 @@ class User extends REST_Controller {
 	function __construct() {
 		// Construct the parent class
 		parent::__construct();
-		$this->load->dbutil();
 		$this->load->model('user_model');
+		$this->load->dbutil();
+
 
 
 		//print_r($this->db->error());
 
 		if($this->db->error())
 		{
+			//echo 55;
+			//print_r($this->db->error());  die();
 
 			$message = [
                     'Error_code' => '-101',
@@ -240,12 +243,23 @@ class User extends REST_Controller {
 				'data'=> $data
 						];
 					}
+						
+					else {
+						$message = [
+                    'Error_code' => '-101',
+			        'Status'=>false,
+			        'Error_Reason' => 'UNKNOWNERROR',
+				    'Error_Type' => 'Critical', 
+                    'message' => 'User Detail identification failed'
+                    // 'data' => $userdata
+						];
+					}
 
 
 				}
 			}
-				
-				
+
+
 			else
 			{
 				$message = [
@@ -293,8 +307,8 @@ class User extends REST_Controller {
 				}
 
 			}
-			
-		if(!array_key_exists("user_id",$this->post()))
+				
+			if(!array_key_exists("user_id",$this->post()))
 			{
 				$message = [
                 'Error_code' => '-101',
