@@ -243,7 +243,7 @@ class User extends REST_Controller {
 				'data'=> $data
 						];
 					}
-						
+
 					else {
 						$message = [
                     'Error_code' => '-101',
@@ -307,7 +307,7 @@ class User extends REST_Controller {
 				}
 
 			}
-				
+
 			if(!array_key_exists("user_id",$this->post()))
 			{
 				$message = [
@@ -356,7 +356,48 @@ class User extends REST_Controller {
 		//print_r($StoreID);
 	}
 
+	
+	public function FetchlistForCH_post()
+	{
+		$userID = $this->input->post('user_id');
+		
+		if($userID)
+		{
+			$fetch = $this->user_model->FetchList($userID);
+		}
+		
+		else {
+			if(!array_key_exists("user_id",$this->post()))
+			{
+				$message = [
+                'Error_code' => '-101',
+			    'Status'=>false,
+				'Error_Reason' => 'INVALIDJSON',
+				'Error_Type' => 'Critical', 
+                'message' => 'JSON Parameter is invalid'
+                ];
 
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
+			
+			
+			else
+			{
+				if($userID == NULL || $userID == ' ')
+				{
+					$message = [
+                'Error_code' => '-104',
+			    'Status'=>false,
+				'Error_Reason' => 'USERIDERROR',
+				'Error_Type' => 'Critical', 
+                'message' => 'UserID is blank'
+                ];
 
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
+		}
+	}
+
+	}
 
 }

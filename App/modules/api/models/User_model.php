@@ -21,8 +21,8 @@ class User_model extends CI_Model {
 	 */
 
 	function CheckUser($user_id, $password) {
-		
-		
+
+
 		$cond = array(
             'login_id' => $user_id,
             'password' => $password,
@@ -44,7 +44,7 @@ class User_model extends CI_Model {
 
 	function BarcodeValidation($barcodes,$storeID)
 	{
-		
+
 			
 		$array = array();
 			
@@ -71,7 +71,7 @@ class User_model extends CI_Model {
 		$this->db->where('Store_Id',$storeID);
 		$query = $this->db->get($this->product_master);
 		//echo $this->db->last_query();
-
+		$GsID = uniqid();
 		if($query->num_rows() > 0)
 		{
 
@@ -94,11 +94,14 @@ class User_model extends CI_Model {
 				//echo $this->db->last_query(); die();
 				//echo $query->num_rows(); die();
 				if($query2){
-				if($query2->num_rows() == 0){
+					if($query2->num_rows() == 0){
+							
+							
 
-				 $arr2 = array(
+						$arr2 = array(
 
 				 'Store_Id'=>$row['Store_Id'],
+				 'GsTransactionID' =>$GsID,
 				 'Barcode'=>$row['Barcode'],
 				 'ItemCode'=>$row['Barcode'],
 				 'ItemDescription'=>$row['ItemDescription'],
@@ -112,15 +115,15 @@ class User_model extends CI_Model {
 				 'Sub_Category_Name'=>$row['sub_cat_name']
 
 
-				 );
-				 $this->db->set('GS_CreatedDateTime', 'NOW()', FALSE);
-				 $insert = $this->db->insert($this->gap_scan_listing, $arr2);
+						);
+						$this->db->set('GS_CreatedDateTime', 'NOW()', FALSE);
+						$insert = $this->db->insert($this->gap_scan_listing, $arr2);
 
 
-				 //echo $this->db->last_query();
+						//echo $this->db->last_query();
 
 
-				}
+					}
 				}
 
 				else {
@@ -179,6 +182,35 @@ class User_model extends CI_Model {
 
 		}
 			
+	}
+
+
+	public function FetchList($userID)
+	{
+       $this->db->where('id',$userID);
+       $this->db->select('userCategoryId,userStoreId,role');
+       $user  = $this->db->get($this->user_table);
+       
+       if($user)
+       {
+       	 print_r($user->row()); die();
+       	 
+       	 $CatID = $user->row()->userCategoryId;
+       	 $StoreID = $user->row()->userStoreId;
+       	 $role = $user->row()->role;
+       	 
+       	 if($CatID && $StoreID && $role == 'CH')
+       	 {
+       	 	$this->db->order_by("GS_CreatedDateTime", "DESC");
+       	 	$this->db->limit(1);  
+       	 	$this->db->where('Store_Id',$StoreID);
+       	 	$this->db->where('Category_id',$CatID);
+       	 	
+       	 	
+       	 }
+       	 
+       }
+	 
 	}
 
 
