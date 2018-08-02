@@ -95,7 +95,7 @@ class User_model extends CI_Model {
 				//echo $this->db->last_query(); die();
 				//echo $query->num_rows(); die();
 				if($query2){
-					if($query2->num_rows() == 0){
+					if($query2->num_rows() === 0){
 							
 							
 
