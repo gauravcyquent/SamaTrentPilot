@@ -17,7 +17,7 @@ class User extends REST_Controller {
 		parent::__construct();
 		$this->load->model('user_model');
 		$this->load->dbutil();
-
+        error_reporting(0);
 
 
 		//print_r($this->db->error());
@@ -314,7 +314,7 @@ class User extends REST_Controller {
 			}
 
 			else{
-				echo 77;
+				//echo 77;
 
 				if($storeID == ' ' || $storeID == NULL){
 
