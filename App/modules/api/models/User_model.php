@@ -92,7 +92,7 @@ class User_model extends CI_Model {
 				$this->db->where('Store_Id',$row['Store_Id']);
 				$this->db->where('GsTransactionID',$GsID);
 				$query2 = $this->db->get($this->gap_scan_listing);
-				//echo $this->db->last_query(); die();
+				echo $this->db->last_query(); die();
 				//echo $query->num_rows(); die();
 				if($query2){
 					if($query2->num_rows() === 0){
