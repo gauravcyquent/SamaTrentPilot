@@ -22,7 +22,7 @@ class User_model extends CI_Model {
 
 	function CheckUser($user_id, $password) {
 
-
+        echo 45466; die();
 		$cond = array(
             'login_id' => $user_id,
             'password' => $password,
