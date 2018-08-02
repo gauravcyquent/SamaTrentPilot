@@ -222,6 +222,8 @@ class User extends REST_Controller {
 				if($data)
 				{
 					if(is_array($data)){
+						
+				    print_r($data);
 							
 							
 						$message = [
