@@ -54,21 +54,24 @@ class User_model extends CI_Model {
 			$this->db->where('Store_Id',$storeID);
 			$query = $this->db->get($this->product_master);
 			//echo $this->db->last_query(); die();
-            if($query)
-            {
-			if($query->num_rows() == 0)
+			if($query)
 			{
-				array_push($array,$codes);
-			}
-           }
-           
-		else {
+				if($query->num_rows() == 0)
+				{
+					array_push($array,$codes);
+					return $array;
+				}
+					
+				else {
 					$message = '000';
 					return 105;
 				}
+			}
+			 
+
 		}
 			
-		return $array;
+		
 	}
 
 
@@ -194,30 +197,30 @@ class User_model extends CI_Model {
 
 	public function FetchList($userID)
 	{
-       $this->db->where('id',$userID);
-       $this->db->select('userCategoryId,userStoreId,role');
-       $user  = $this->db->get($this->user_table);
-       
-       if($user)
-       {
-       	 print_r($user->row()); die();
-       	 
-       	 $CatID = $user->row()->userCategoryId;
-       	 $StoreID = $user->row()->userStoreId;
-       	 $role = $user->row()->role;
-       	 
-       	 if($CatID && $StoreID && $role == 'CH')
-       	 {
-       	 	$this->db->order_by("GS_CreatedDateTime", "DESC");
-       	 	$this->db->limit(1);  
-       	 	$this->db->where('Store_Id',$StoreID);
-       	 	$this->db->where('Category_id',$CatID);
-       	 	
-       	 	
-       	 }
-       	 
-       }
-	 
+		$this->db->where('id',$userID);
+		$this->db->select('userCategoryId,userStoreId,role');
+		$user  = $this->db->get($this->user_table);
+		 
+		if($user)
+		{
+			print_r($user->row()); die();
+			 
+			$CatID = $user->row()->userCategoryId;
+			$StoreID = $user->row()->userStoreId;
+			$role = $user->row()->role;
+			 
+			if($CatID && $StoreID && $role == 'CH')
+			{
+				$this->db->order_by("GS_CreatedDateTime", "DESC");
+				$this->db->limit(1);
+				$this->db->where('Store_Id',$StoreID);
+				$this->db->where('Category_id',$CatID);
+
+
+			}
+			 
+		}
+
 	}
 
 
