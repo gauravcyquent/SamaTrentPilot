@@ -206,6 +206,7 @@ class User extends REST_Controller {
 
 	public function BarcodeValidation_post()
 	{
+		echo 34343; die();
 		$barcodes = $this->input->post('barcodes');
 		$storeID  = $this->input->post('store_id');
 		$userID   = $this->input->post('user_id');
