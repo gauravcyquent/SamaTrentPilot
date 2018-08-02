@@ -44,7 +44,7 @@ class User_model extends CI_Model {
 
 	function BarcodeValidation($barcodes,$storeID)
 	{
-
+        echo 89898; die();
 			
 		$array = array();
 			
