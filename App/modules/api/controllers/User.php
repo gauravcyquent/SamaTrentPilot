@@ -220,13 +220,33 @@ class User extends REST_Controller {
 
 				if($data)
 				{
-					$message = [
+					if(is_array($data)){
+							
+							
+						$message = [
 				'status'=>false,
                 'Error_Code' => '-106',
 				'Error_Reason'=>'INVALIDBARCODE', 
                 'message' => 'Barcode not found',
 				'data'=> $data
-					];
+						];
+					}
+
+
+					else {
+							
+
+						$message = [
+                    'Error_code' => '-101',
+			        'Status'=>false,
+			        'Error_Reason' => 'UNKNOWNERROR',
+				    'Error_Type' => 'Critical', 
+                    'message' => 'Barcode validation failed'
+                    // 'data' => $userdata
+						];
+							
+							
+					}
 				}
 
 
@@ -356,16 +376,16 @@ class User extends REST_Controller {
 		//print_r($StoreID);
 	}
 
-	
+
 	public function FetchlistForCH_post()
 	{
 		$userID = $this->input->post('user_id');
-		
+
 		if($userID)
 		{
 			$fetch = $this->user_model->FetchList($userID);
 		}
-		
+
 		else {
 			if(!array_key_exists("user_id",$this->post()))
 			{
@@ -379,8 +399,8 @@ class User extends REST_Controller {
 
                 $this->set_response($message, REST_Controller::HTTP_OK);
 			}
-			
-			
+				
+				
 			else
 			{
 				if($userID == NULL || $userID == ' ')
@@ -394,9 +414,9 @@ class User extends REST_Controller {
                 ];
 
                 $this->set_response($message, REST_Controller::HTTP_OK);
+				}
 			}
 		}
-	}
 
 	}
 

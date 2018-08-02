@@ -54,11 +54,18 @@ class User_model extends CI_Model {
 			$this->db->where('Store_Id',$storeID);
 			$query = $this->db->get($this->product_master);
 			//echo $this->db->last_query(); die();
-
+            if($query)
+            {
 			if($query->num_rows() == 0)
 			{
 				array_push($array,$codes);
 			}
+           }
+           
+		else {
+					$message = '000';
+					return 105;
+				}
 		}
 			
 		return $array;
