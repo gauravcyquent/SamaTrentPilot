@@ -49,7 +49,7 @@ class User extends REST_Controller {
 
 	function CheckUserAuthentication_post() {
 			
-		//echo 1333; die();
+		echo 1333; die();
 		$user_id = $this->input->post('username', true);
 		$password = $this->input->post('password', true);
 
