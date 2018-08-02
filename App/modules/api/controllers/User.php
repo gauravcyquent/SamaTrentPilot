@@ -213,7 +213,7 @@ class User extends REST_Controller {
 		$is_store = $this->user_model->CheckStore($storeID);
 		if($storeID && $userID && $is_store == 1)
 		{
-			//echo 990;
+			echo 990;
 			if(array_key_exists("barcodes",$this->post())){
 
 				$json = json_decode($barcodes,true);  //print_r($json); die();
@@ -314,7 +314,7 @@ class User extends REST_Controller {
 			}
 
 			else{
-				//echo 77;
+				echo 77;
 
 				if($storeID == ' ' || $storeID == NULL){
 
