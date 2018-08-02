@@ -17,7 +17,7 @@ class User extends REST_Controller {
 		parent::__construct();
 		$this->load->model('user_model');
 		$this->load->dbutil();
-        error_reporting(0);
+
 
 
 		//print_r($this->db->error());
@@ -209,11 +209,11 @@ class User extends REST_Controller {
 		$barcodes = $this->input->post('barcodes');
 		$storeID  = $this->input->post('store_id');
 		$userID   = $this->input->post('user_id');
-
-		$is_store = $this->user_model->CheckStore($storeID);
-		if($storeID && $userID && $is_store == 1)
+		
+        //$is_store = $this->user_model->CheckStore($storeID);
+		if($storeID && $userID)
 		{
-			echo 990;
+
 			if(array_key_exists("barcodes",$this->post())){
 
 				$json = json_decode($barcodes,true);  //print_r($json); die();
@@ -222,8 +222,6 @@ class User extends REST_Controller {
 				if($data)
 				{
 					if(is_array($data)){
-						
-				    print_r($data);
 							
 							
 						$message = [
@@ -316,7 +314,6 @@ class User extends REST_Controller {
 			}
 
 			else{
-				echo 77;
 
 				if($storeID == ' ' || $storeID == NULL){
 
@@ -328,16 +325,6 @@ class User extends REST_Controller {
                 'message' => 'Store Id not found'
                 ];
 
-				}
-
-				else {
-					$message = [
-			    'status'=>false,
-                'Error_Code' => '-107',
-			    'Error_Reason' => 'INVALIDSTORE',
-				'Error_Type' => 'Critical',  
-                'message' => 'Store Id not found'
-                ];
 				}
 
 			}
@@ -413,8 +400,8 @@ class User extends REST_Controller {
 
                 $this->set_response($message, REST_Controller::HTTP_OK);
 			}
-
-
+				
+				
 			else
 			{
 				if($userID == NULL || $userID == ' ')
