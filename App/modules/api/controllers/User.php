@@ -49,7 +49,7 @@ class User extends REST_Controller {
 
 	function CheckUserAuthentication_post() {
 			
-		echo 45; die();
+		//echo 1333; die();
 		$user_id = $this->input->post('username', true);
 		$password = $this->input->post('password', true);
 
@@ -206,7 +206,6 @@ class User extends REST_Controller {
 
 	public function BarcodeValidation_post()
 	{
-		echo 34343; die();
 		$barcodes = $this->input->post('barcodes');
 		$storeID  = $this->input->post('store_id');
 		$userID   = $this->input->post('user_id');
