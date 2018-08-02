@@ -42,6 +42,30 @@ class User_model extends CI_Model {
 
 	}
 
+
+	function CheckStore($storeID)
+	{
+		$this->db->where('userStoreId',$storeID);
+		$query = $this->db->get('users');
+
+		if($query)
+		{
+			if($query->num_rows() > 0)
+			{
+				return 1;
+			}
+
+			else {
+				return 0;
+			}
+
+
+		}
+
+		return -1;
+
+	}
+
 	function BarcodeValidation($barcodes,$storeID)
 	{
 
@@ -62,16 +86,13 @@ class User_model extends CI_Model {
 					return $array;
 				}
 					
-				else {
-					$message = '000';
-					return 105;
-				}
+
 			}
-			 
+
 
 		}
 			
-		
+
 	}
 
 
@@ -200,15 +221,15 @@ class User_model extends CI_Model {
 		$this->db->where('id',$userID);
 		$this->db->select('userCategoryId,userStoreId,role');
 		$user  = $this->db->get($this->user_table);
-		 
+			
 		if($user)
 		{
 			print_r($user->row()); die();
-			 
+
 			$CatID = $user->row()->userCategoryId;
 			$StoreID = $user->row()->userStoreId;
 			$role = $user->row()->role;
-			 
+
 			if($CatID && $StoreID && $role == 'CH')
 			{
 				$this->db->order_by("GS_CreatedDateTime", "DESC");
@@ -218,7 +239,7 @@ class User_model extends CI_Model {
 
 
 			}
-			 
+
 		}
 
 	}
