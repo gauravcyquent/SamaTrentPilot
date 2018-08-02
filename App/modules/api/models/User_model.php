@@ -121,7 +121,7 @@ class User_model extends CI_Model {
 						$insert = $this->db->insert($this->gap_scan_listing, $arr2);
 
 
-						//echo $this->db->last_query();
+						echo $this->db->last_query();
 
 
 					}
