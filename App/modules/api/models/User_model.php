@@ -54,11 +54,22 @@ class User_model extends CI_Model {
 			$this->db->where('Store_Id',$storeID);
 			$query = $this->db->get($this->product_master);
 			//echo $this->db->last_query(); die();
-
-			if($query->num_rows() == 0)
+			if($query)
 			{
-				array_push($array,$codes);
+				if($query->num_rows() == 0)
+				{
+					array_push($array,$codes);
+				}
 			}
+
+			else {
+				$message = '000';
+				return 105;
+
+				die();
+			}
+
+
 		}
 			
 		return $array;
@@ -188,30 +199,59 @@ class User_model extends CI_Model {
 
 	public function FetchList($userID)
 	{
-       $this->db->where('id',$userID);
-       $this->db->select('userCategoryId,userStoreId,role');
-       $user  = $this->db->get($this->user_table);
-       
-       if($user)
-       {
-       	 print_r($user->row()); die();
-       	 
-       	 $CatID = $user->row()->userCategoryId;
-       	 $StoreID = $user->row()->userStoreId;
-       	 $role = $user->row()->role;
-       	 
-       	 if($CatID && $StoreID && $role == 'CH')
-       	 {
-       	 	$this->db->order_by("GS_CreatedDateTime", "DESC");
-       	 	$this->db->limit(1);  
-       	 	$this->db->where('Store_Id',$StoreID);
-       	 	$this->db->where('Category_id',$CatID);
-       	 	
-       	 	
-       	 }
-       	 
-       }
-	 
+		$this->db->where('id',$userID);
+		$this->db->select('userCategoryId,userStoreId,role');
+		$user  = $this->db->get($this->user_table);
+			
+		if($user)
+		{
+			//print_r($user->row()); die();
+
+			$CatID = $user->row()->userCategoryId;
+			$StoreID = $user->row()->userStoreId;
+			$role = $user->row()->role;
+
+			if($CatID && $StoreID && $role == 'CH')
+			{
+				$this->db->order_by("GS_CreatedDateTime", "DESC");
+				$this->db->limit(1);
+				$this->db->where('Store_Id',$StoreID);
+				$this->db->where('Category_id',$CatID);
+				$query = $this->db->get($this->gap_scan_listing);
+
+				if($query)
+				{
+					$GsID = $query->row()->GsTransactionID;
+					if($GsID)
+					{
+						$this->db->order_by("GS_CreatedDateTime", "DESC");
+						$this->db->where('GsTransactionID',$GsID);
+						$this->db->where('Category_id',$CatID);
+						$data = $this->db->get($this->gap_scan_listing);
+
+						$array = array();
+						foreach($data->result_array() as $row)
+						{
+
+							$output = array_slice($row,0,11);
+
+							array_push($array,$output);
+
+								
+
+
+						}
+						
+						return $array;
+
+
+					}
+				}
+
+			}
+
+		}
+
 	}
 
 

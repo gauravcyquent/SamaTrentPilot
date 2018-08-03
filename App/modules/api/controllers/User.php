@@ -209,8 +209,8 @@ class User extends REST_Controller {
 		$barcodes = $this->input->post('barcodes');
 		$storeID  = $this->input->post('store_id');
 		$userID   = $this->input->post('user_id');
-		
-        //$is_store = $this->user_model->CheckStore($storeID);
+
+		//$is_store = $this->user_model->CheckStore($storeID);
 		if($storeID && $userID)
 		{
 
@@ -385,6 +385,37 @@ class User extends REST_Controller {
 		if($userID)
 		{
 			$fetch = $this->user_model->FetchList($userID);
+
+			if(is_array($fetch))
+			{
+
+				if(!empty($fetch)){
+					$message = [
+                    'Error_code' => '1',
+			        'Status'=>true,
+				    'Error_Reason' => '',
+				    'Error_Type' => '',
+                    'message' => 'Details Fetched..!!',
+                    'data' => $fetch
+					];
+
+					$this->set_response($message, REST_Controller::HTTP_OK);
+				}
+
+				else
+				{
+					$message = [
+                    'Error_code' => '1',
+			        'Status'=>true,
+				    'Error_Reason' => 'UNKNOWNERROR',
+				    'Error_Type' => 'Critical',
+                    'message' => 'Fetchlist For Category failed',
+                    'data' => $fetch
+					];
+
+					$this->set_response($message, REST_Controller::HTTP_OK);
+				}
+			}
 		}
 
 		else {
@@ -400,8 +431,8 @@ class User extends REST_Controller {
 
                 $this->set_response($message, REST_Controller::HTTP_OK);
 			}
-				
-				
+
+
 			else
 			{
 				if($userID == NULL || $userID == ' ')
