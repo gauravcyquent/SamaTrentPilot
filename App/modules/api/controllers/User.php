@@ -25,7 +25,7 @@ class User extends REST_Controller {
 		if($this->db->error())
 		{
 			//echo 55;
-			//print_r($this->db->error());  die();
+			//print_r($this->db->error());  //die();
 
 			$message = [
                     'Error_code' => '-101',
@@ -384,37 +384,71 @@ class User extends REST_Controller {
 
 		if($userID)
 		{
-			$fetch = $this->user_model->FetchList($userID);
+			$GetUser  = $this->user_model->GetUserData($userID);
+				
+			//print_r($GetUser); die();
+			if($GetUser){
+					
+				$fetch = $this->user_model->FetchList($userID);  //print_r($fetch); die();
 
-			if(is_array($fetch))
-			{
+				if(is_array($fetch))
+				{
 
-				if(!empty($fetch)){
-					$message = [
+					if(!empty($fetch)){
+						$message = [
                     'Error_code' => '1',
 			        'Status'=>true,
 				    'Error_Reason' => '',
 				    'Error_Type' => '',
                     'message' => 'Details Fetched..!!',
                     'data' => $fetch
-					];
+						];
 
-					$this->set_response($message, REST_Controller::HTTP_OK);
-				}
+						$this->set_response($message, REST_Controller::HTTP_OK);
+					}
 
-				else
-				{
-					$message = [
+					else
+					{
+						$message = [
                     'Error_code' => '1',
 			        'Status'=>true,
 				    'Error_Reason' => 'UNKNOWNERROR',
 				    'Error_Type' => 'Critical',
                     'message' => 'Fetchlist For Category failed',
                     'data' => $fetch
+						];
+
+						$this->set_response($message, REST_Controller::HTTP_OK);
+					}
+				}
+
+				else {
+					$message = [
+                    'Error_code' => '-110',
+			        'Status'=>true,
+				    'Error_Reason' => 'NODATAFOUND',
+				    'Error_Type' => 'Critical',
+                    'message' => 'No data found',
+					 
 					];
 
 					$this->set_response($message, REST_Controller::HTTP_OK);
 				}
+			}
+
+			else {
+
+				$message = [
+                    'Error_code' => '-109',
+			        'Status'=>true,
+				    'Error_Reason' => 'INVALIDUSERID',
+				    'Error_Type' => 'Critical',
+                    'message' => 'User Id not found',
+
+				];
+
+				$this->set_response($message, REST_Controller::HTTP_OK);
+
 			}
 		}
 
@@ -450,6 +484,43 @@ class User extends REST_Controller {
 			}
 		}
 
+	}
+	
+	
+	public function  UpdateByCategoryHead_post()
+	{
+		$barcodes = $this->input->post('barcodes');
+		$userID = $this->input->post('user_id');
+		
+		if($userID)
+		{
+			$json = json_decode($barcodes,true);  
+			$data = $this->user_model->UpdateByCategoryHead($json,$userID);  //print_r($data); die();
+			
+			if($data)
+			{
+				
+				
+				
+				$message = [
+                'Error_code' => '1',
+			    'Status'=>True,
+				'Error_Reason' => '',
+				'Error_Type' => '', 
+                'message' => 'GS details updated successfully..!!'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
+			
+			$mail = SendEmail($data);
+			
+		}
+		
+		
+		else {
+			
+		}
 	}
 
 }

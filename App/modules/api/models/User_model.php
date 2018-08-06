@@ -237,21 +237,91 @@ class User_model extends CI_Model {
 
 							array_push($array,$output);
 
-								
+
 
 
 						}
-						
+
 						return $array;
 
 
+					}
+
+					else {
+						return false;
 					}
 				}
 
 			}
 
+			else {
+				return false;
+			}
+
 		}
 
+	}
+
+
+	public function GetUserData($userID)
+	{
+		$this->db->where('id',$userID);
+		$query = $this->db->get($this->user_table);
+
+
+		if($query->num_rows() === 1)
+		{
+			return $query->row();
+		}
+
+		else
+		{
+			return false;
+		}
+	}
+
+
+	public function UpdateByCategoryHead($json,$userID)
+	{
+		
+            
+			$data = array(
+                       'Avaliable_flag' => 'TRUE'
+             
+                       );
+                       $this->db->set('CH_Updated_DateTime',"NOW()",FALSE);
+                       $this->db->set('CH_Updated_UserId',$userID,FALSE);
+                       $this->db->where_in('Barcode',$json);
+                       $this->db->where('GsTransactionID',$this->input->post('gs_id'));
+                       $update = $this->db->update($this->gap_scan_listing, $data);
+                       
+                       
+                       
+                       if($update)
+                       {
+                       	 $this->db->where('users.id',$userID);
+                       	 $this->db->where('gap_scan_listing.Avaliable_flag!=','TRUE');
+                       	 $this->db->where('gap_scan_listing.GsTransactionID',$this->input->post('gs_id'));
+                       	 $this->db->select('users.email');
+                       	 $this->db->join($this->gap_scan_listing,'gap_scan_listing.Category_id = users.userCategoryId');
+                       	 $query = $this->db->get('users');
+                       	 
+                       	 if($query)
+                       	 {
+                       	 	return $query->row()->email;
+                       	 }
+                       	 else {
+                       	 	
+                       	 }
+                       	
+                       }
+                       
+                     
+                       //echo $this->db->last_query(); die();
+
+		
+			
+		
 	}
 
 
