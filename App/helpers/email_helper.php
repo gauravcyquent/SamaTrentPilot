@@ -1,18 +1,24 @@
 <?php
 if (!function_exists('SendEmail')) {
 
-	function SendEmail() {
-		$this->load->library('email');
+	function SendEmail($data) {
+		$CI = &get_instance ();
+		
+		$data['view'] = $data;
 
-		$this->email->from('your@example.com', 'Your Name');
-		$this->email->to('someone@example.com');
-		$this->email->cc('another@another-example.com');
-		$this->email->bcc('them@their-example.com');
+		$msg = $CI->load->view('Email',$data,true);  
+        //$config['mailtype'] = 'html';
+		$CI->load->library('email');
+		$CI->email->set_mailtype("html");
+		$CI->email->from('gaurav.r@cyquent.com', 'Cyquent Infotech');
+		$CI->email->to('baskaran.t@cyquent.com');
+		$CI->email->cc('niraj.jaipuria@cyquent.com');
+		$CI->email->bcc('gaurav.r@cyquent.com');
 
-		$this->email->subject('Email Test');
-		$this->email->message('Testing the email class.');
+		$CI->email->subject('Email Test');
+		$CI->email->message($msg);
 
-		$this->email->send();
+		$CI->email->send();
 	}
 
 }

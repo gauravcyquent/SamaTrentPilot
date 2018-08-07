@@ -283,9 +283,9 @@ class User_model extends CI_Model {
 
 	public function UpdateByCategoryHead($json,$userID)
 	{
-		
-            
-			$data = array(
+
+
+		$data = array(
                        'Avaliable_flag' => 'TRUE'
              
                        );
@@ -294,34 +294,49 @@ class User_model extends CI_Model {
                        $this->db->where_in('Barcode',$json);
                        $this->db->where('GsTransactionID',$this->input->post('gs_id'));
                        $update = $this->db->update($this->gap_scan_listing, $data);
-                       
-                       
-                       
+
+
+
                        if($update)
                        {
-                       	 $this->db->where('users.id',$userID);
-                       	 $this->db->where('gap_scan_listing.Avaliable_flag!=','TRUE');
-                       	 $this->db->where('gap_scan_listing.GsTransactionID',$this->input->post('gs_id'));
-                       	 $this->db->select('users.email');
-                       	 $this->db->join($this->gap_scan_listing,'gap_scan_listing.Category_id = users.userCategoryId');
-                       	 $query = $this->db->get('users');
-                       	 
-                       	 if($query)
-                       	 {
-                       	 	return $query->row()->email;
-                       	 }
-                       	 else {
-                       	 	
-                       	 }
-                       	
+                       	$this->db->where('users.id',$userID);
+                       	$this->db->where('gap_scan_listing.Avaliable_flag!=','TRUE');
+                       	$this->db->where('gap_scan_listing.GsTransactionID',$this->input->post('gs_id'));
+                       	$this->db->where('gap_scan_listing.Category_id',$this->input->post('cat_id'));
+
+                       	$this->db->join($this->user_table,'gap_scan_listing.Category_id = users.userCategoryId');
+                       	$query = $this->db->get('gap_scan_listing');
+                       	//echo $this->db->last_query(); die();
+                       	if($query)
+                       	{
+                       		if($query->num_rows() > 0)
+                       		{
+
+                       	 	return $query->result_array();
+
+
+                       		}
+
+                       		else {
+                       			return true;
+                       		}
+                       	}
+                       	else {
+                       		return false;
+                       	}
+
                        }
-                       
-                     
+
+                       else {
+                       	return false;
+                       }
+
+
                        //echo $this->db->last_query(); die();
 
-		
-			
-		
+
+
+
 	}
 
 

@@ -385,7 +385,7 @@ class User extends REST_Controller {
 		if($userID)
 		{
 			$GetUser  = $this->user_model->GetUserData($userID);
-				
+
 			//print_r($GetUser); die();
 			if($GetUser){
 					
@@ -429,7 +429,7 @@ class User extends REST_Controller {
 				    'Error_Reason' => 'NODATAFOUND',
 				    'Error_Type' => 'Critical',
                     'message' => 'No data found',
-					 
+
 					];
 
 					$this->set_response($message, REST_Controller::HTTP_OK);
@@ -485,24 +485,26 @@ class User extends REST_Controller {
 		}
 
 	}
-	
-	
+
+
 	public function  UpdateByCategoryHead_post()
 	{
 		$barcodes = $this->input->post('barcodes');
 		$userID = $this->input->post('user_id');
-		
-		if($userID)
+
+		if($userID && $this->input->post('gs_id'))
 		{
-			$json = json_decode($barcodes,true);  
-			$data = $this->user_model->UpdateByCategoryHead($json,$userID);  //print_r($data); die();
-			
-			if($data)
-			{
-				
-				
-				
-				$message = [
+
+			if(array_key_exists("barcodes",$this->post())){
+				$json = json_decode($barcodes,true);
+				$data = $this->user_model->UpdateByCategoryHead($json,$userID);  //print_r($data); die();
+
+				if($data)
+				{
+
+					SendEmail($data);
+
+					$message = [
                 'Error_code' => '1',
 			    'Status'=>True,
 				'Error_Reason' => '',
@@ -511,15 +513,69 @@ class User extends REST_Controller {
                 ];
 
                 $this->set_response($message, REST_Controller::HTTP_OK);
+				}
+
+				else {
+					$message = [
+                'Error_code' => '-110',
+			    'Status'=>False,
+				'Error_Reason' => 'UNKNOWNERROR',
+				'Error_Type' => 'Critical', 
+                'message' => 'GS details updation failed'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+				}
+					
+				//$mail = SendEmail($data);
+					
 			}
-			
-			$mail = SendEmail($data);
-			
+
+			else {
+				$message = [
+                'Error_code' => '-101',
+			    'Status'=>false,
+				'Error_Reason' => 'INVALIDJSON',
+				'Error_Type' => 'Critical', 
+                'message' => 'JSON Parameter is invalid'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
 		}
-		
-		
+
+
 		else {
-			
+
+			if(!array_key_exists("user_id",$this->post()))
+			{
+				$message = [
+                'Error_code' => '-101',
+			    'Status'=>false,
+				'Error_Reason' => 'INVALIDJSON',
+				'Error_Type' => 'Critical', 
+                'message' => 'JSON Parameter is invalid'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+			}
+
+
+			else
+			{
+				if($userID == NULL || $userID == ' ')
+				{
+					$message = [
+                'Error_code' => '-104',
+			    'Status'=>false,
+				'Error_Reason' => 'USERIDERROR',
+				'Error_Type' => 'Critical', 
+                'message' => 'UserID is blank'
+                ];
+
+                $this->set_response($message, REST_Controller::HTTP_OK);
+				}
+			}
 		}
 	}
 
